@@ -29,6 +29,14 @@ func Test少し長い文字列(t *testing.T) {
 	}
 }
 
+func Test日本語(t *testing.T) {
+	expectSet := map[string]struct{}{"あい": struct{}{}, "いう": struct{}{}, "うえ": struct{}{}}
+
+	if set, _ := Sequencengramset("あいうえ", 2); !reflect.DeepEqual(set, expectSet) {
+		t.Errorf("expected %d to eq %d", set, expectSet)
+	}
+}
+
 func Test0は受け付けない(t *testing.T) {
 	if _, err := Sequencengramset("AB", 0); err == nil {
 		t.Errorf("expect err is not nil")
