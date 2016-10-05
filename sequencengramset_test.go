@@ -58,6 +58,16 @@ func Test重複した文字列があっても大丈夫(t *testing.T) {
 	}
 }
 
+func Test数値が文字列の長さよりも長い場合は結果は返らない(t *testing.T) {
+	expectSet := []string{}
+	sort.Strings(expectSet)
+	set, _ := Sequencengramset("今日", 10)
+	sort.Strings(set)
+	if !reflect.DeepEqual(set, expectSet) {
+		t.Errorf("expected %d to eq %d", set, expectSet)
+	}
+}
+
 func Benchmark(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		Sequencengramset("ABCDEFGFALKJLAKJDLKJFLKSDJFLKSJFLSKJDFLKSJFLKKDSJFLSJDFLSKDJFKLSJDFKLSJFLKDKJFLKSDJLFKSDJFLDSKJFLDSJLKSJDFLKJDSFD", 2)
