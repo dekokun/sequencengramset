@@ -34,8 +34,10 @@ func Test少し長い文字列(t *testing.T) {
 
 func Test日本語(t *testing.T) {
 	expectSet := []string{"あい", "いう", "うえ"}
-
-	if set, _ := Sequencengramset("あいうえ", 2); !reflect.DeepEqual(set, expectSet) {
+	sort.Strings(expectSet)
+	set, _ := Sequencengramset("あいうえ", 2)
+	sort.Strings(set)
+	if !reflect.DeepEqual(set, expectSet) {
 		t.Errorf("expected %d to eq %d", set, expectSet)
 	}
 }
