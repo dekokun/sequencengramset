@@ -34,3 +34,9 @@ func Test0は受け付けない(t *testing.T) {
 		t.Errorf("expect err is not nil")
 	}
 }
+
+func Benchmark(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Sequencengramset("ABCDEFGFALKJLAKJDLKJFLKSDJFLKSJFLSKJDFLKSJFLKKDSJFLSJDFLSKDJFKLSJDFKLSJFLKDKJFLKSDJLFKSDJFLDSKJFLDSJLKSJDFLKJDSFD", 2)
+	}
+}
